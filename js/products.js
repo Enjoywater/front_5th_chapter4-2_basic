@@ -70,11 +70,36 @@ function displayProducts(products) {
     container.appendChild(fragment);
 }
 
+function heavyOperationFunc() {
+    let i = 0;
 
+    function chunk() {
+        const end = Math.min(i + 100000, 10000000);
 
-loadProducts();
+        for (; i < end; i++) {
+            const temp = Math.sqrt(i) * Math.sqrt(i);
+        }
 
-// Simulate heavy operation. It could be a complex price calculation.
-for (let i = 0; i < 10000000; i++) {
-    const temp = Math.sqrt(i) * Math.sqrt(i);
+        if (i < 10000000) {
+            setTimeout(chunk, 0); // 다음 이벤트 루프에 실행
+        } 
+    }
+
+    chunk();
+}
+
+window.onload = () => {
+    let status = 'idle';
+    let productSection = document.querySelector('#all-products');
+
+    window.onscroll = () => {
+        let position = productSection.getBoundingClientRect().top - (window.scrollY + window.innerHeight);
+
+        if (status == 'idle' && position <= 0) {
+            loadProducts();
+
+            // 무거운 연산을 비동기로 쪼개서 실행
+            heavyOperationFunc();
+        }
+    }
 }
