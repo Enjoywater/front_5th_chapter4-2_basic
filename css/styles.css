@@ -1,6 +1,11 @@
+@font-face {
+    font-family: 'Heebo';
+    src: url('fonts/Heebo.ttf') format('truetype');
+    font-display: swap;
+}
+
 body {
     margin: 0;
-    font-family: 'Heebo';
     padding-top: 80px;
 }
 
@@ -371,7 +376,6 @@ section.newsletter form input {
     border: 1px solid #3E3E3E;
     border-right: none;
     color: #3E3E3E;
-    font-family: Heebo;
     font-size: 14px;
     letter-spacing: 0.35px;
     line-height: 21px;
