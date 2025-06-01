@@ -1,6 +1,3 @@
-
-
-
 body {
     margin: 0;
     font-family: 'Heebo';
@@ -178,10 +175,12 @@ section.country-bar {
     flex-direction: column;
     height: 60px;
     background-color: #f2f2f2;
+    transition: opacity 0.3s
 }
 
 section.country-bar.hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 section.best-sellers {
@@ -234,6 +233,10 @@ section.best-sellers .product-slider .product {
 
 section.best-sellers .product-slider .product img {
     max-width: 40%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 section.best-sellers .product-slider .product .product-picture {
