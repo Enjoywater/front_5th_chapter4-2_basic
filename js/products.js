@@ -10,6 +10,8 @@ function displayProducts(products) {
     const container = document.querySelector('#all-products .container');
 
     if (!container) return;
+
+    const fragment = document.createDocumentFragment();
    
     // Iterate over each product and create the HTML structure safely
     products.forEach(product => {
@@ -20,6 +22,7 @@ function displayProducts(products) {
         // Create the product picture div
         const pictureDiv = document.createElement('div');
         pictureDiv.classList.add('product-picture');
+
         const img = document.createElement('img');
         img.src = product.image;
         img.alt = `product: ${product.title}`;
@@ -41,12 +44,14 @@ function displayProducts(products) {
 
         const price = document.createElement('h3');
         price.classList.add('price');
+
         const priceSpan = document.createElement('span');
         priceSpan.textContent = `US$ ${product.price}`;
         price.appendChild(priceSpan);
 
         const button = document.createElement('button');
         button.textContent = 'Add to bag';
+        button.setAttribute('aria-label', `Add ${product.title} to bag`);
 
         // Append elements to the product info div
         infoDiv.appendChild(category);
@@ -59,11 +64,10 @@ function displayProducts(products) {
         productElement.appendChild(infoDiv);
 
         // Append the new product element to the container
-        container.appendChild(productElement);
+        fragment.appendChild(productElement);
     });
 
-    
-
+    container.appendChild(fragment);
 }
 
 
@@ -71,7 +75,6 @@ function displayProducts(products) {
 loadProducts();
 
 // Simulate heavy operation. It could be a complex price calculation.
-// for (let i = 0; i < 10000000; i++) {
-//     const temp = Math.sqrt(i) * Math.sqrt(i);
-// }
-
+for (let i = 0; i < 10000000; i++) {
+    const temp = Math.sqrt(i) * Math.sqrt(i);
+}
